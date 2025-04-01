@@ -54,20 +54,28 @@ for index, row in df.iterrows():
         json_file.write('    "modelSeeds": [],\n')
         json_file.write('    "sequences": [\n')
         json_file.write(
-            '      {"proteinChain": {"sequence": "'
+            '      {\n        "proteinChain": {\n          "sequence": "'
             + target_sequence
-            + '", "count": 1}},\n'
+            + '",\n          "count": 1,\n'
         )
+        json_file.write('          "useStructureTemplate": true,\n')
         json_file.write(
-            '      {"proteinChain": {"sequence": "'
-            + protein_sequence
-            + '", "count": 1}}\n'
+            '          "maxTemplateDate": "2025-02-03"\n        }\n      },\n'
         )
+
+        json_file.write(
+            '      {\n        "proteinChain": {\n          "sequence": "'
+            + protein_sequence
+            + '",\n          "count": 1,\n'
+        )
+        json_file.write('          "useStructureTemplate": true,\n')
+        json_file.write(
+            '          "maxTemplateDate": "2025-02-03"\n        }\n      }\n'
+        )
+
         json_file.write("    ],\n")
         json_file.write('    "dialect": "alphafoldserver",\n')
-        json_file.write('    "version": 1,\n')
-        json_file.write('    "useStructureTemplate": true,\n')
-        json_file.write('    "maxTemplateDate": "2025-02-03"\n')
+        json_file.write('    "version": 1\n')
         if index == (len(df) - 1):
             json_file.write("  }\n")
         else:
